@@ -24,15 +24,19 @@ spec:
     OWNER = 'Phi'
     PROJECT_NAME = 'phi-k3s-server'
   }
-  stages {
-    stage("build") {
-      container ("packer") {
-          steps {
-        sh 'make && make build'
-         }
-      }
+   stages {
+
+     stage ('build') {
+
+            steps {
+                //sh "make init"
+              container ("packer") {
+
+                sh "make && make build"
+              }
+            }
+        }
     }
-  }
  post {
        success {
            build job: "phi-k3s-agent", wait: false
