@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image "bryandollery/aws-cli-alpine"
+      image "bryandollery/terraform-packer-aws-alpine"
     }
   }
   environment {
