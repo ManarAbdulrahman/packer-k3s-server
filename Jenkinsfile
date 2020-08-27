@@ -32,7 +32,7 @@ spec:
                 //sh "make init"
               container ("packer") {
 
-                sh "make && make build"
+                sh "make build"
               }
             }
         }
