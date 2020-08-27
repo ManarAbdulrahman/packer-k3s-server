@@ -1,7 +1,20 @@
 pipeline {
   agent {
-    docker {
-      image "bryandollery/terraform-packer-aws-alpine"
+    kubernetes {
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    stattt: testing
+spec:
+  containers:
+  - name: packer
+    image: bryandollery/terraform-packer-aws-alpine
+    command:
+    - bash
+    tty: true
+"""
     }
   }
   environment {
@@ -13,8 +26,10 @@ pipeline {
   }
   stages {
     stage("build") {
-      steps {
+      container ("packer") {
+          steps {
         sh 'make && make build'
+         }
       }
     }
   }
