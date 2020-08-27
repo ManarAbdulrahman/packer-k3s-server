@@ -37,7 +37,7 @@
   },
   {
     "type": "shell",
-    "inline": ["/home/ubuntu/provision.sh"]
+    "inline": [". /home/ubuntu/provision.sh"]
   },
   {
     "type": "file",
