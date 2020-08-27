@@ -1,5 +1,8 @@
 #!/bin/bash
-sudo apt update -y && sudo apt install -y curl vim jq git make docker.io
+sudo apt update -y && sudo apt install -y curl vim
+sudo apt install -y jq
+sudo apt install git make
+curl -L get.docker.com | sh
 sudo usermod -aG docker ubuntu
 curl -sfL https://get.k3s.io | sh -
 sudo systemctl enable k3s
