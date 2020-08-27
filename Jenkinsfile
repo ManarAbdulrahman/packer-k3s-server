@@ -1,7 +1,7 @@
  pipeline {
   agent {
     docker {
-      image "hashicorp/packer"
+      image "hashicorp/packer:latest"
     }
   }
   environment {
