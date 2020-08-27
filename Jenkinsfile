@@ -1,7 +1,7 @@
- pipeline {
+pipeline {
   agent {
     docker {
-      image "hashicorp/packer:latest"
+      image "bryandollery/aws-cli-alpine"
     }
   }
   environment {
