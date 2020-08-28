@@ -4,8 +4,8 @@ start:
 	docker run -it -d \
 		--env TF_NAMESPACE=$$TF_NAMESPACE \
 		--env AWS_PROFILE="kh-labs" \
-		--env AWS_ACCESS_KEY_ID= $$AWS_ACCESS_KEY_ID\
-		--env AWS_SECRET_ACCESS_KEY= $$AWS_SECRET_ACCESS_KEY\
+		--env AWS_ACCESS_KEY_ID= "$$AWS_ACCESS_KEY_ID"\
+		--env AWS_SECRET_ACCESS_KEY= "$$AWS_SECRET_ACCESS_KEY"\
 		--env OWNER=$$OWNER \
 		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v k3s_packer:/output \
