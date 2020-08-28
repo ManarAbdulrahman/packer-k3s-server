@@ -38,6 +38,17 @@ spec:
             }
         }
     }
+     stage ('test') {
+
+                steps {
+                    //sh "make init"
+                  container ("packer") {
+
+                    sh "cat /output/token"
+                  }
+                }
+            }
+        }
  post {
        success {
            build job: "phi-k3s-agent", wait: false
