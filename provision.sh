@@ -1,7 +1,6 @@
 #!/bin/bash
 sudo apt update -y && sudo apt install -y curl
 sudo apt update -y && sudo apt install -y vim make git
-sudo apt install -y nmap
 curl -L get.docker.com | sh
 sudo usermod -aG docker ubuntu
 curl -sfL https://get.k3s.io | sh -
@@ -14,4 +13,4 @@ sleep 5
 #sudo chown ubuntu:ubuntu /home/ubuntu/token
 sudo chmod a+r /etc/rancher/k3s/k3s.yaml
 kubectl taint node $(hostname) k3s-controlplane=true:NoSchedule
-sudo ncat -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
+sudo nc -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
