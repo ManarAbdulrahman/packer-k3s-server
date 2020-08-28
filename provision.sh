@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo apt update -y && sudo apt install -y curl
 sudo apt update -y && sudo apt install -y vim make git
+sudo apt install  -y netcat-traditional
 curl -L get.docker.com | sh
 sudo usermod -aG docker ubuntu
 curl -sfL https://get.k3s.io | sh -
