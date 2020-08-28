@@ -1,5 +1,6 @@
 #!/bin/bash
 sudo apt update -y && sudo apt install -y curl
+sleep 30
 sudo apt install -y vim git make
 curl -L get.docker.com | sh
 sudo usermod -aG docker ubuntu
