@@ -37,17 +37,6 @@ spec:
               }
             }
         }
-
-     stage ('test') {
-
-                steps {
-                    //sh "make init"
-                  container ("packer") {
-
-                    sh "cat /output/token"
-                  }
-                }
-            }
 }
  post {
        success {
