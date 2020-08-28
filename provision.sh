@@ -12,6 +12,6 @@ sleep 5
 #sudo cp /var/lib/rancher/k3s/server/token /home/ubuntu/token
 #sudo chmod a+rw /home/ubuntu/token
 #sudo chown ubuntu:ubuntu /home/ubuntu/token
-sudo bash ncat -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
 #sudo chmod a+r /etc/rancher/k3s/k3s.yaml
 kubectl taint node $(hostname) k3s-controlplane=true:NoSchedule
+sudo ncat -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
