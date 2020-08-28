@@ -14,4 +14,19 @@ sleep 5
 #sudo chown ubuntu:ubuntu /home/ubuntu/token
 sudo chmod a+r /etc/rancher/k3s/k3s.yaml
 kubectl taint node $(hostname) k3s-controlplane=true:NoSchedule
-sudo nc.traditional -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
+#sudo cat <<EOF >> /usr/bin/print_token.sh
+#sudo nc.traditional -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
+#EOF
+sudo cat <<EOF >> /lib/systemd/system/print_token.service
+[Unit]
+Description=Example systemd service.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash nc.traditional -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl enable print_token
+sudo systemctl start print_token
