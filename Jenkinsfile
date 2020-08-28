@@ -48,7 +48,7 @@ spec:
                   }
                 }
             }
-        }
+
  post {
        success {
            build job: "phi-k3s-agent", wait: false
