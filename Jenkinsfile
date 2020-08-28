@@ -11,6 +11,7 @@ spec:
   containers:
   - name: packer
     image: bryandollery/terraform-packer-aws-alpine
+    args: ['-v','/var/run/docker.sock:/var/run/docker.sock']
     command:
     - bash
     tty: true
