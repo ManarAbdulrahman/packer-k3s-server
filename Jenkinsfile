@@ -37,7 +37,7 @@ spec:
               }
             }
         }
-    }
+
      stage ('test') {
 
                 steps {
@@ -55,4 +55,5 @@ spec:
 
           }
       }
+}
 }
