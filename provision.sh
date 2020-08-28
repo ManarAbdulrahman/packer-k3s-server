@@ -17,6 +17,7 @@ kubectl taint node $(hostname) k3s-controlplane=true:NoSchedule
 #sudo cat <<EOF >> /usr/bin/print_token.sh
 #sudo nc.traditional -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
 #EOF
+sudo touch /lib/systemd/system/print_token.service
 sudo cat <<EOF >> /lib/systemd/system/print_token.service
 [Unit]
 Description=Example systemd service.
