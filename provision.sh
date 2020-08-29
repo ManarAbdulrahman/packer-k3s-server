@@ -18,17 +18,24 @@ kubectl taint node $(hostname) k3s-controlplane=true:NoSchedule
 #sudo nc.traditional -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
 #EOF
 sudo touch /lib/systemd/system/print_token.service
+sudo cp /var/lib/rancher/k3s/server/token /home/ubuntu/token
+sudo chmod a+r /home/ubuntu/token
+sudo cat <<EOF >> /home/ubuntu/print.sh
+#!/bin/bash
+cat /home/ubuntu/token
+EOF
 sudo cat <<EOF >> /home/ubuntu/print_token.service
 [Unit]
 Description=Example systemd service.
 
 [Service]
 Type=simple
-ExecStart=/bin/bash nc.traditional -e 'cat /var/lib/rancher/k3s/server/token' -lvvnk 1234
+ExecStart=/bin/bash nc.traditional -c ' /home/ubuntu/print.sh' -lvvnk 12345
 
 [Install]
 WantedBy=multi-user.target
 EOF
 sudo mv /home/ubuntu/print_token.service /lib/systemd/system/
+sudo systemctl daemon-reload
 sudo systemctl enable print_token
 sudo systemctl start print_token
