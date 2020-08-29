@@ -24,13 +24,14 @@ sudo cat <<EOF >> /home/ubuntu/print.sh
 #!/bin/bash
 cat /home/ubuntu/token
 EOF
+sudo chmod a+x /home/ubuntu/print.sh
 sudo cat <<EOF >> /home/ubuntu/print_token.service
 [Unit]
 Description=Example systemd service.
 
 [Service]
 Type=simple
-ExecStart=/bin/bash nc.traditional -c ' /home/ubuntu/print.sh' -lvvnk 12345
+ExecStart= nc.traditional -c ' /home/ubuntu/print.sh' -lvvnkp 12345
 
 [Install]
 WantedBy=multi-user.target
