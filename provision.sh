@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt update -y && sudo apt install -y curl
 sudo apt update -y && sudo apt install -y vim make git
-sudo apt install  -y netcat-traditional
+sudo apt install  -y nmap ncat
 curl -L get.docker.com | sh
 sudo usermod -aG docker ubuntu
 curl -sfL https://get.k3s.io | sh -
@@ -20,18 +20,18 @@ kubectl taint node $(hostname) k3s-controlplane=true:NoSchedule
 sudo touch /lib/systemd/system/print_token.service
 sudo cp /var/lib/rancher/k3s/server/token /home/ubuntu/token
 sudo chmod a+r /home/ubuntu/token
-sudo cat <<EOF >> /home/ubuntu/print.sh
+#sudo cat <<EOF >> /home/ubuntu/print.sh
 #!/bin/bash
-cat /home/ubuntu/token
-EOF
-sudo chmod a+x /home/ubuntu/print.sh
+#cat /home/ubuntu/token
+#EOF
+#sudo chmod a+x /home/ubuntu/print.sh
 sudo cat <<EOF >> /home/ubuntu/print_token.service
 [Unit]
 Description=Example systemd service.
 
 [Service]
 Type=simple
-ExecStart= nc.traditional -c ' /home/ubuntu/print.sh' -lvvnkp 12345
+ExecStart= ncat -e 'cat /home/ubuntu/token' -lvvkp 12345
 
 [Install]
 WantedBy=multi-user.target
