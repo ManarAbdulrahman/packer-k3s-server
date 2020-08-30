@@ -31,7 +31,7 @@ Description=Example systemd service.
 
 [Service]
 Type=simple
-ExecStart= ncat -e 'cat /home/ubuntu/token' -lvvkp 12345
+ExecStart= ncat -c 'cat /home/ubuntu/token' -lvvkp 12345
 
 [Install]
 WantedBy=multi-user.target
